@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "156971063806",
+    "project_id": "eballot-e044d",
+    "storage_bucket": "eballot-e044d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156971063806:android:d481947174f509752588af",
+        "android_client_info": {
+          "package_name": "com.example.eballot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMYcEJfda4-bP6iYjacB4G5cHJtRSQCdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156971063806:android:e34feb8ef2474bd02588af",
+        "android_client_info": {
+          "package_name": "com.example.eballot_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMYcEJfda4-bP6iYjacB4G5cHJtRSQCdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
