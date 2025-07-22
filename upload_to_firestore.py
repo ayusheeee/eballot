@@ -1,26 +1,38 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
 import csv
+import re
 
-# Initialize Firebase Admin SDK
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
-
-# Get Firestore client
 db = firestore.client()
 
-# Open the CSV file
-with open("candidates.csv", newline='', encoding='utf-8') as csvfile:
+def clean_string(value):
+    return value.strip().replace("\n", " ").replace("\r", " ")
+
+with open("candidates_final.csv", newline='', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
-    for row in reader:
-        name = row['name']
-        # Each document ID will be the candidate's name
-        doc_ref = db.collection("candidates").document(name)
+    for i, row in enumerate(reader, start=1):
+        name = clean_string(row.get('name', 'Unnamed Candidate'))
+
+        if not name:
+            continue
+
+        doc_id = re.sub(r'[/\\#?]', '-', name)
+
+        # 🔒 Check if already uploaded
+        if db.collection("candidates").document(doc_id).get().exists:
+            print(f"✅ Skipping (already uploaded): {doc_id}")
+            continue
+
+        doc_ref = db.collection("candidates").document(doc_id)
         doc_ref.set({
-            "name": row["name"],
-            "party": row["party"],
-            "state": row["state"],
-            "constituency": row["constituency"]
+            "name": name,
+            "party": clean_string(row.get("party", "Unknown")),
+            "state": clean_string(row.get("state", "Unknown")),
+            "constituency": clean_string(row.get("constituency", "Unknown"))
         })
 
-print("✅ Data uploaded to Firestore successfully.")
+        print(f"⬆️ Uploaded: {doc_id}")
+
+print("🎉 Upload complete for new candidates only.")
