@@ -20,6 +20,14 @@ The project focuses on building a secure, scalable, and accessible voting experi
 ## Status
 Currently under development.
 
+## Screenshots
+
+### Home Page
+![Home Page](assets/homepage.png)
+
+### Login Page
+![Login Page](assets/loginpage.png)
+
 ## Future Improvements
 - Advanced face verification
 - Admin dashboard
